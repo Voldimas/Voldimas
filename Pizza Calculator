@@ -1,0 +1,70 @@
+import java.util.Scanner;
+//ppi stands for price per square inch
+public class PizzaCalc {
+	double size;
+	double price;
+	double ppi;
+
+	public PizzaCalc(double s, double p, double pricePerInch) {
+		s = size;
+		p = price;
+		pricePerInch = ppi;
+	}
+
+	// This asks the person details on the za
+	public void priceQ(String name) {
+		System.out.println("please input the " + name + " size in inches");
+		Scanner question = new Scanner(System.in);
+		Scanner question2 = new Scanner(System.in);
+		size = question.nextDouble();
+		System.out.println("And now the price");
+		price = question2.nextDouble();
+	}
+
+	// This is a formula to calculate the cheapest price
+	public double form() {
+		double r = size / 2;
+		double p = price;
+		double pricePer = p / (r * r * 3.1415);
+		return pricePer;
+	}
+
+	public static void main(String[] args) {
+		//Intializing sizes, not sure how to account for more on the fly
+		PizzaCalc small = new PizzaCalc(0, 0, 0);
+		PizzaCalc medium = new PizzaCalc(0, 0, 0);
+		PizzaCalc large = new PizzaCalc(0, 0, 0);
+		PizzaCalc sextraLarge = new PizzaCalc(0, 0, 0);
+
+		//Getting price/size information
+		small.priceQ("small");
+		medium.priceQ("medium");
+		large.priceQ("large");
+		large.priceQ("Extra large");
+
+		//calculating ppi
+		small.ppi = small.form();
+		medium.ppi = medium.form();
+		large.ppi = large.form();
+		sextraLarge.ppi = sextraLarge.form();
+
+		//Someone tell me there is a better way to do this lol
+		if (small.ppi < medium.ppi && small.ppi < large.ppi && small.ppi < sextraLarge.ppi) {
+			System.out.println("The cheapest pizza is the Small!");
+		}
+
+		else if (medium.ppi < small.ppi && medium.ppi < large.ppi && medium.ppi < sextraLarge.ppi) {
+			System.out.println("The cheapest pizza is the Medium!");
+		}
+
+		else if (large.ppi < small.ppi && large.ppi < medium.ppi && large.ppi < sextraLarge.ppi) {
+			System.out.println("The cheapest pizza is the Large!");
+		}
+
+		else if (sextraLarge.ppi < small.ppi && sextraLarge.ppi < medium.ppi && sextraLarge.ppi < large.ppi) {
+			System.out.println("The cheapest pizza is the Extra Large!");
+		}
+		System.out.println(sextraLarge.ppi);
+	}
+
+}
